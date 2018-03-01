@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<!-- phones, this is where the synthesis happens
+TODO: button for user to have individual control over sound 
+TODO: slider for control over some aspect of sound 
+-->
+
+<head>
+  <title>Rhizome example</title>
+  <script src="/rhizome/rhizome.js"></script>
+  <script src="js/jquery-2.1.0.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/styles.css" />
+  <script>
+    var client
+    $(function () {
+      client = new rhizome.Client()
+
+      // `rhizome.start` is the first function that should be called.
+      // The function inside is executed once the client managed to connect.
+      client.start(function (err) {
+        // We want to receive all the messages, so we subscribe to '/'
+        client.send('/sys/subscribe', ['/'])
+      })
+
+      client.on('connected', function () {
+        alert('connected!')
+      })
+
+      client.on('connection lost', function () {
+        alert('connection lost!')
+      })
+
+      client.on('server full', function () {
+        alert('server is full!')
+      })
+
+    })
+  </script>
+</head>
+
+<body>
+  <form id="send">
+    <input id="address" placeholder="example : /some/address" />
+    <input id="args" placeholder='example : "arg1" 666 "arg2"' />
+    <input type="submit" />
+  </form>
+
+  <div id="received">
+  </div>
+</body>
+
+</html>
