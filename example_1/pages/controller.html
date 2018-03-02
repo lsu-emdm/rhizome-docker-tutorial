@@ -11,6 +11,8 @@ everyones people's phones at the same time
   <title>Rhizome example</title>
   <script src="/rhizome/rhizome.js"></script>
   <script src="js/jquery-2.1.0.min.js"></script>
+  <script src="https://rawgit.com/nexus-js/ui/master/dist/NexusUI.js"></script>
+
   <link rel="stylesheet" type="text/css" href="css/styles.css" />
   <script>
     var client
@@ -24,12 +26,6 @@ everyones people's phones at the same time
         client.send('/sys/subscribe', ['/'])
       })
 
-      client.on('message', (address, args) => {
-        if (address == '/hello') {
-          console.log('sup')
-        }
-      });
-
       client.on('connected', function () {
         alert('connected!')
       })
@@ -42,18 +38,23 @@ everyones people's phones at the same time
         alert('server is full!')
       })
 
+      button = new Nexus.TextButton('#control', {
+        text: 'Play some sounds everywhere!'
+      })
+
+      button.on('change', v => {
+        if (v) {
+          client.send('/playAll', [1]);
+        }
+      });
     })
   </script>
 </head>
 
 <body>
-  <form id="send">
-    <input id="address" placeholder="example : /some/address" />
-    <input id="args" placeholder='example : "arg1" 666 "arg2"' />
-    <input type="submit" />
-  </form>
+  <div class="interface">
+    <div id="control"></div>
 
-  <div id="received">
   </div>
 </body>
 
