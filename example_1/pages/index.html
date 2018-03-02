@@ -26,13 +26,9 @@
       });
 
       //special websocket client messages 
-      client.on('connection lost', () => {
-        alert('connection lost!')
-      })
-
-      client.on('server full', () => {
-        alert('server is full!')
-      })
+      client.on('connected', () => console.log('connected'))
+      client.on('connection lost', () => console.log('connection lost'))
+      client.on('server full', () => console.log('server full'))
 
       //how you receive messages
       client.on('message', (address, args) => {

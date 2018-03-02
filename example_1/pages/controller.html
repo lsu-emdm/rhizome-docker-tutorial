@@ -15,32 +15,20 @@
 
       // `rhizome.start` is the first function that should be called.
       // The function inside is executed once the client managed to connect.
-      client.start(function (err) {
+      client.start((err) => {
         // We want to receive all the messages, so we subscribe to '/'
         client.send('/sys/subscribe', ['/'])
       })
 
-      client.on('connected', function () {
-        alert('connected!')
-      })
-
-      client.on('connection lost', function () {
-        alert('connection lost!')
-      })
-
-      client.on('server full', function () {
-        alert('server is full!')
-      })
+      client.on('connected', () => console.log('connected'))
+      client.on('connection lost', () => console.log('connection lost'))
+      client.on('server full', () => console.log('server full'))
 
       button = new Nexus.TextButton('#control', {
         text: 'Play some sounds everywhere!'
       })
 
-      button.on('change', v => {
-        v ? client.send('/playAll', [1]) : ''
-        // if (v) {
-        // }
-      });
+      button.on('change', v => v ? client.send('/playAll', [1]) : '');
     })
   </script>
 </head>
