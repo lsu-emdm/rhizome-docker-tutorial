@@ -10,12 +10,9 @@
   <script src="https://rawgit.com/nexus-js/ui/master/dist/NexusUI.js"></script>
   <link rel="stylesheet" type="text/css" href="css/styles.css" />
   <script>
-    var client;
-    var button;
-    var notes, instrumentPicker;
     $(function () {
       //init rhizome 
-      client = new rhizome.Client()
+      const client = new rhizome.Client()
 
       // `rhizome.start` is the first function that should be called.
       // The function inside is executed once the client managed to connect.
@@ -34,7 +31,7 @@
       client.on('message', (address, args) => {
         if (address === '/playAll') play();
       })
-      button = new Nexus.TextButton('#target', {
+      const button = new Nexus.TextButton('#target', {
         text: 'Play some sounds!',
         size: [400, 400]
       })
@@ -42,8 +39,8 @@
       button.on('change', v => v ? play() : '');
 
       function play() {
-        instrumentPicker = _.random(0, 1);
-        notes = _.sample(['a3', 'a5', 'c4', 'c5', 'c6', 'e4', 'e5'])
+        let instrumentPicker = _.random(0, 1);
+        let notes = _.sample(['a3', 'a5', 'c4', 'c5', 'c6', 'e4', 'e5'])
         if (instrumentPicker == 0) {
           sustain.triggerAttackRelease(notes);
           console.log('sustain')
