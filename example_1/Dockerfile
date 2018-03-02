@@ -20,9 +20,11 @@ RUN npm install -g rhizome-server
 COPY . .
 
 # Our app runs on port 8000. Expose it!
+# Using 8001 with Docker to be able to test it separate from running the server outside of Docker
 EXPOSE 8001:8000
 
 # Specify UDP for OSC communication? 
+# Same with OSC port 9001 outside of Docker maps to port 9000 used by rhizome
 EXPOSE 9001:9000/UDP
 
 # Run the application.
