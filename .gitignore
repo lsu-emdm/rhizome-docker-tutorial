@@ -5,6 +5,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# tmp folder
+example_1/tmp/
+
 # Runtime data
 pids
 *.pid
