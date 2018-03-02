@@ -9,9 +9,8 @@
 
   <link rel="stylesheet" type="text/css" href="css/styles.css" />
   <script>
-    var client
     $(function () {
-      client = new rhizome.Client()
+      const client = new rhizome.Client()
 
       // `rhizome.start` is the first function that should be called.
       // The function inside is executed once the client managed to connect.
@@ -24,7 +23,7 @@
       client.on('connection lost', () => console.log('connection lost'))
       client.on('server full', () => console.log('server full'))
 
-      button = new Nexus.TextButton('#control', {
+      const button = new Nexus.TextButton('#control', {
         text: 'Play some sounds everywhere!'
       })
 
